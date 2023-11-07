@@ -1,0 +1,28 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="TEMPLATE" desc="Generated schema file."
+    xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="ZBD2P" xs:type="double" readonly="false" other:xPath="/json/ZBD2P" />
+    <attr name="ZBD2T" xs:type="integer" readonly="false" other:xPath="/json/ZBD2T" />
+    <attr name="ZBD3T" xs:type="integer" readonly="false" other:xPath="/json/ZBD3T" />
+    <attr name="ZOLLD" xs:type="date" readonly="false" other:xPath="/json/ZOLLD" />
+    <attr name="ZUONR" xs:type="string" readonly="false" other:xPath="/json/ZUONR" />
+  </api:info>
+
+  <api:set attr="DataModel" value="DOCUMENT" />
+  <api:set attr="URI" value="http://localhost:8065/?name=BSEG" />
+
+  <api:set attr="JSONPath" value="$." />
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+    <api:set attr="method" value="GET"/>
+    <api:call op="jsonproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>
