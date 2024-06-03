@@ -12,6 +12,63 @@ Function Log-Debug {
     Add-Content -Path $LogPath -Value $message
 }
 
+# Define mapping of data types as a PowerShell hash table
+$TYPE_MAPPING = @{
+    "Byte" = "int"
+    "Short" = "int"
+    "Int" = "int"
+    "Long" = "int"
+    "Double" = "double"
+    "Decimal" = "decimal"
+    "NumericString" = "string"
+    "StringLengthMax" = "string"
+    "StringLengthUnknown" = "string"
+    "ByteArrayLengthExact" = "string"
+    "ByteArrayLengthMax" = "string"
+    "ByteArrayLengthUnknown" = "string"
+    "Date" = "datetime"
+    "ConvertedDate" = "datetime"
+    "Time" = "datetime"
+}
+
+# Define the list of destination types available in Xtract Universal as a PowerShell array
+$DESTINATION_TYPES = @(
+    "Unknown",
+    "Alteryx",
+    "AlteryxConnect",
+    "AzureDWH",
+    "AzureBlob",
+    "CSV",
+    "DB2",
+    "EXASOL",
+    "FileCSV",
+    "FileJSON",
+    "GoodData",
+    "GoogleCloudStorage",
+    "HANA",
+    "HTTPJSON",
+    "MicroStrategy",
+    "MySQL",
+    "ODataAtom",
+    "Oracle",
+    "Parquet",
+    "PostgreSQL",
+    "PowerBI",
+    "PowerBIConnector",
+    "Qlik",
+    "Redshift",
+    "S3Destination",
+    "Salesforce",
+    "SharePoint",
+    "Snowflake",
+    "SQLServer",
+    "SqlServerReportingServices",
+    "Tableau",
+    "Teradata",
+    "Vertica"
+)
+
+
 # Load environment variables
 $XU_BASE_URL = [Environment]::GetEnvironmentVariable("XU_BASE_URL", "User")
 if (-not $XU_BASE_URL) { $XU_BASE_URL = "http://localhost:8065" }
