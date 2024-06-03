@@ -1,12 +1,13 @@
 {
-    "markdown.extension.print.imgToBase64": true,
-    "markdown.extension.toc.levels": "2..6",
-    "markdown.extension.toc.orderedList": true,
-    "markdown.extension.toc.omittedFromToc": {
-      "README.md": ["## Table of Contents"]
-    },
-    "files.associations": {
-      "*.rsd": "xml"
-    }
+  "markdown.extension.print.imgToBase64": true,
+  "markdown.extension.toc.levels": "2..6",
+  "markdown.extension.toc.orderedList": true,
+  "markdown.extension.toc.omittedFromToc": {
+    "README.md": [
+      "## Table of Contents"
+    ]
+  },
+  "files.associations": {
+    "*.rsd": "xml"
   }
-  
+}
