@@ -302,9 +302,9 @@ function New-RSDs {
     $ExtractionName = $Extraction.name
     $Columns = Get-ColumnList -ExtractionName $ExtractionName
 
-    $ExtractionBaseUrl = "$XU_BASE_URL/?name=$ExtractionName"
+    $ExtractionBaseUrl = "$XU_BASE_URL/run/$ExtractionName/"
     if ($ForceDestinationType) {
-        $ExtractionBaseUrl += "&destination=$DESTINATION_TYPE_PARAMETER"
+        $ExtractionBaseUrl += "?destination=$DESTINATION_TYPE_PARAMETER"
     }
 
     $ExtractionUrls = @{
@@ -314,7 +314,7 @@ function New-RSDs {
     foreach ($Column in $Columns) {
         $ColumnName = $Column.name
         if ($SLIDING_COLUMNS -contains $ColumnName) {
-            $SlidingUrl = "$ExtractionBaseUrl&where=$ColumnName%20%3E=%20%27" +
+            $SlidingUrl = $ExtractionBaseUrl + $(If ($string -contains '?') { "&" }  Else { "?" } ) + "where=$ColumnName%20%3E=%20%27" +
                 ((Get-Date).AddDays(-$SlidingDays).ToString("yyyyMMdd")) + "%27"
             $ExtractionUrls[(Join-Path $RSD_TARGET_FOLDER "$($ExtractionName)_sliding_$($ColumnName)_$($SlidingDays)days.rsd")] = $SlidingUrl
         }
