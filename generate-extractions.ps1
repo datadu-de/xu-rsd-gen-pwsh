@@ -257,7 +257,7 @@ function New-RSD {
         }
 
         if ($Column.PSObject.Properties.Name -contains "length") {
-            $Attributes["columnsize"] = [string]$Column.length
+            $Attributes["columnsize"] = if ($Column.type -eq "ByteArrayLengthExact") { [string]$($Column.length * 2) } else { [string]$Column.length }
         }
 
         if ($Column.PSObject.Properties.Name -contains "decimalsCount") {
